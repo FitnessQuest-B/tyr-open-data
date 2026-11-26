@@ -1,6 +1,7 @@
 """Trusted supervisor loaded by the guest boot service from the control disk."""
 
 import io
+import gzip
 import json
 import os
 import platform
@@ -22,6 +23,30 @@ MEMORY = 2 * 1024**3
 PROCESSES = 64
 SCRATCH = 128 * 1024**2
 CASE_SECONDS = 90
+BOOT_EXPORT = Path("/dev/disk/by-id/virtio-tyr-boot-export")
+BOOT_LIMITS = (64 * 1024**2, 96 * 1024**2)
+
+
+def boot_artifacts():
+    """Export only the installed kernel and initrd to a setup-only device."""
+    release = platform.release()
+    image = Path(f"/boot/vmlinuz-{release}").read_bytes()
+    if image.startswith(b"\x1f\x8b"):
+        with gzip.GzipFile(fileobj=io.BytesIO(image)) as zipped:
+            image = zipped.read(BOOT_LIMITS[0] + 1)
+    ramdisk = Path(f"/boot/initrd.img-{release}")
+    initrd = ramdisk.read_bytes() if ramdisk.is_file() else b""
+    if image[56:60] != b"ARM\x64" or len(image) > BOOT_LIMITS[0] or len(initrd) > BOOT_LIMITS[1]:
+        raise ValueError("Unexpected ARM64 boot material")
+    root_id = subprocess.check_output(["findmnt", "-n", "-o", "PARTUUID", "/"], text=True, timeout=5).strip()
+    with BOOT_EXPORT.open("wb") as stream:
+        stream.write(frame({"root_partuuid": root_id, "kernel_release": release}, [image, initrd]))
+    return {"status": "boot_exported"}, b"", b""
+
+
+def boot_milestone(marker):
+    with open("/dev/console", "w") as console:
+        console.write(marker + "\n")
 
 
 def podman(*args):
@@ -58,16 +83,16 @@ def image_id(value):
     return value
 
 
-def configure(payload, scratch):
+def configure(payload, scratch, tag):
     context = scratch / "build"
     context.mkdir()
     with tarfile.open(fileobj=io.BytesIO(payload), mode="r:") as source:
         source.extractall(context, filter="data")
     for entry in context.rglob("*"):
         entry.chmod(0o755 if entry.is_dir() else 0o644)
-    checked("build", "--network=none", "--pull=never", "--tag", "localhost/tyr-reference:0.2",
+    checked("build", "--network=none", "--pull=never", "--tag", tag,
             str(context), timeout=120)
-    metadata = json.loads(checked("image", "inspect", "localhost/tyr-reference:0.2"))[0]
+    metadata = json.loads(checked("image", "inspect", tag))[0]
     return {"status": "configured", "image": image_id(metadata["Id"])}, b"", b""
 
 
@@ -127,7 +152,9 @@ def main():
     with RESULT.open("wb") as port:
         stage = "boot_readiness"
         try:
+            boot_milestone("TYR_BOOT_DEVICES_READY")
             profile = environment()
+            boot_milestone("TYR_BOOT_RUNTIME_READY")
             port.write(READY)
             port.flush()
             stage = "guest_execution"
@@ -137,9 +164,12 @@ def main():
                 with DEVICE.open("rb") as stream:
                     # One disk type per launch; the mode is chosen by the trusted host.
                     kind = stream.read(1)
-                    if kind == b"B":
-                        _, parts = receive(stream, (2 * 1024**2,))
-                        answer, data, diagnostics = configure(parts[0], scratch)
+                    if kind == b"E":
+                        answer, data, diagnostics = boot_artifacts()
+                    elif kind == b"B":
+                        header, parts = receive(stream, (2 * 1024**2,))
+                        tag = {"candidate": "localhost/tyr-reference:0.3", "baseline": "localhost/tyr-reference:0.2"}
+                        answer, data, diagnostics = configure(parts[0], scratch, tag[header["worker"]])
                     elif kind == b"R":
                         header, parts = receive(stream, (8192, 16 * 1024**2, 16384))
                         answer, data, diagnostics = case(header, parts, scratch)

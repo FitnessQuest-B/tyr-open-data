@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0
+
+- Added an experimental benchmark worker that checks local weight coverage and uncertainty before calling a step, and checks temporal stability before deciding a relationship window.
+- Added a 120-case verification suite and a paired comparison against the published v0.2.0 worker, with separate acceptance gates for weight abstention and exact reassessment.
+- Switched benchmark VMs to direct Linux boot with pinned boot artifacts and bounded startup diagnostics.
+- Added a calibrated 96-case reassessment suite with uneven mixed windows, moderate adjacent changes and matched controls.
+
 ## 0.2.0
 
 - Added an experimental offline benchmark for external agents with a CPU-only Linux arm64 supervisor, a disposable VM per case, rootless OCI execution and bounded outputs.

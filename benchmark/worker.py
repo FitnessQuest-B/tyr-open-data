@@ -21,7 +21,7 @@ from tyr_brain_lab.source import open_source
 import protocol
 from providers import Client, LocalAdapter, MockTransport, Policy, ResponsesAdapter
 
-METHODS = ("deterministic", "drift-aware", "mock-openai", "mock-local")
+METHODS = ("deterministic", "drift-aware", "evidence-aware", "mock-openai", "mock-local")
 
 
 def _refs(evidence, fields):
@@ -139,6 +139,10 @@ def execute(packet, method, ledger=None):
             raise ValueError("Bundled workers admit synthetic benchmark projections only")
         if method in ("deterministic", "drift-aware"):
             prediction, provider = deterministic(task, source, drift_aware=method == "drift-aware"), None
+        elif method == "evidence-aware":
+            from evidence_method import predict
+
+            prediction, provider = predict(task, source), None
         elif ledger is not None:
             prediction, provider = _accounted_mock(method, task, source, ledger)
         else:

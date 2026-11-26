@@ -209,7 +209,7 @@ def _valid_sleep_clock(row):
     return all(type(row[key]) is int and 0 <= row[key] <= 1439
                for key in ("sleep_start_minute", "sleep_end_minute"))
 
-def _caffeine(source, plan, start, end):
+def _paired_sleep(source, start, end, late_minute):
     snapshots = _indexed(source, "daily_snapshot")
     sleep = _indexed(source, "daily_sleep")
     paired = []
@@ -233,7 +233,7 @@ def _caffeine(source, plan, start, end):
         else:
             paired.append({
                 "day": when.isoformat(), "value": value, "provenance": observation["source"],
-                "late": int(exposure["caffeine_last_dose_minute"] >= plan["late_clock_minute"]),
+                "late": int(exposure["caffeine_last_dose_minute"] >= late_minute),
                 "stratum": f'{"training" if exposure["workout_session_count"] > 0 else "quiet"}_{"weekend" if when.weekday() >= 5 else "weekday"}',
                 "dose_mg": exposure["caffeine_mg"],
                 "sleep_clock": [observation["sleep_start_minute"], observation["sleep_end_minute"]],
@@ -245,6 +245,11 @@ def _caffeine(source, plan, start, end):
                 ],
             })
 
+    return paired, excluded
+
+
+def _caffeine(source, plan, start, end):
+    paired, excluded = _paired_sleep(source, start, end, plan["late_clock_minute"])
     groups = _strata(paired)
     common = sorted(key for key, arms in groups.items() if min(map(len, arms)) >= 3)
     retained = [point for point in paired if point["stratum"] in common]

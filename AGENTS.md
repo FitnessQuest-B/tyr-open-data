@@ -2,7 +2,7 @@
 
 ## Find the contract
 
-1. Start with [compatibility](docs/architecture/compatibility.md) and the [versioned manifest](schema/versions/0.1.0/manifest.json). The current candidate supports 32 records projections from closed, standalone TYR v92 exports.
+1. Start with [compatibility](docs/architecture/compatibility.md) and the [versioned manifest](schema/versions/0.1.0/manifest.json). TYR Open Data supports 32 records projections from closed, standalone TYR v92 exports.
 2. Use the [data dictionary](docs/data-dictionary/README.md), [measurement guide](docs/measurements/README.md) and [Brain contract](docs/brain/README.md) before interpreting rows.
 3. Use the [read-only examples](examples/README.md). The included records and Brain Lab databases are empty and can be inspected offline.
 

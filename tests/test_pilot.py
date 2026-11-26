@@ -11,7 +11,7 @@ sys.path[:0] = [str(ROOT / "benchmark"), str(ROOT / "benchmark/isolated")]
 import pilot
 import protocol
 from pilot_design import LABELS
-from runner import GuestProgress, result_submission
+from runner import GuestProgress, boot_arguments, boot_observations, result_submission, vm
 from weight_break import detect
 from wire import READY, RESULT_START, capture, frame, receive
 
@@ -108,6 +108,26 @@ class WeightTests(TemporaryCase):
 
 
 class SupervisorTests(TemporaryCase):
+    def test_direct_boot_uses_only_validated_boot_arguments(self):
+        boot = {"root_partuuid": "abcd1234-abcd-abcd-abcd-123456abcdef", "kernel": "/trusted/Image", "initrd": None}
+        self.assertEqual(boot_arguments(boot), ["-kernel", "/trusted/Image", "-append",
+                         "root=PARTUUID=abcd1234-abcd-abcd-abcd-123456abcdef ro rootwait console=ttyAMA0,115200"])
+        boot["initrd"] = "/trusted/initrd"
+        self.assertEqual(boot_arguments(boot)[-2:], ["-initrd", "/trusted/initrd"])
+        boot["root_partuuid"] += " init=/bin/sh"
+        with self.assertRaises(ValueError):
+            boot_arguments(boot)
+        with self.assertRaises(ValueError):
+            vm(None, None, None, b"")
+
+    def test_boot_diagnostics_keep_markers_and_fault_class_only(self):
+        observation = boot_observations(b"Linux version 6\nRun /sbin/init as init process\n"
+                                        b"TYR_BOOT_DEVICES_READY\nTYR_BOOT_RUNTIME_READY\nother text\n")
+        self.assertEqual(observation, {"boot_milestones": ["kernel", "linux_init", "devices", "runtime"],
+                                       "boot_fault": None})
+        self.assertEqual(boot_observations(b"UEFI firmware\nSynchronous Exception\n"),
+                         {"boot_milestones": ["firmware"], "boot_fault": "firmware_exception"})
+
     def test_serial_milestones_select_independent_deadlines(self):
         progress = GuestProgress()
         payload = RESULT_START + frame({"status": "completed"}, [b"x", b""])
