@@ -21,7 +21,7 @@ from prepare import BENCHMARK_VERSION, prepare
 
 WORKERS = ("deterministic", "mock-openai", "mock-local")
 WORKER_FILES = (
-    "benchmark/worker.py", "benchmark/protocol.py", "benchmark/providers.py",
+    "benchmark/worker.py", "benchmark/protocol.py", "benchmark/providers.py", "benchmark/weight_break.py",
     "brain-lab/tyr_brain_lab/analysis.py", "brain-lab/tyr_brain_lab/source.py",
     "tools/read_export.py", "tools/schema_support.py", "schema/versions/0.1.0/manifest.json",
 )

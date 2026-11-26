@@ -27,7 +27,7 @@ python3 -B benchmark/bench.py score --agent-root "$job/run/agent" \
 
 Each packet contains `records.sqlite` and `task.json`. The evaluator root contains the case mapping, seed, ground truth and expected outcomes. Score commands verify the task and record fingerprints against the evaluator binding and keep inputs read-only.
 
-The bundled runner copies only the worker, its allowed code and the records manifest into a detached runtime. Its subprocess gets one packet, a restricted environment and a bounded execution time. An input guard rejects extra file opens, source SQLite writes, network sockets and subprocesses. It is an accidental-access control for the bundled code. Run arbitrary third-party agents in a separate OS sandbox with only the selected packet and generic task contract mounted read-only, a separate output location, and no evaluator files or authoring checkout. The benchmark does not launch arbitrary agent binaries or send payloads to a hosted model.
+The bundled runner copies only the worker, its allowed code and the records manifest into a detached runtime. Its subprocess gets one packet, a restricted environment and a bounded execution time. An input guard rejects extra file opens, source SQLite writes, network sockets and subprocesses. It is an accidental-access control for the bundled code. The [offline arm64 runner and pilot](isolated/README.md) use a separate operating-system boundary for external agent code and evaluator-owned cases.
 
 ## Scoring
 

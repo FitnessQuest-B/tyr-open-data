@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0 candidate
+
+- Added a CPU-only arm64 benchmark supervisor with a disposable VM per case, rootless OCI execution and bounded offline outputs.
+- Added a private 48-case method-validation pilot with varied layouts, audited evidence adequacy and case-level diagnostics.
+- Added bounded runner readiness checks, stage-specific failure receipts, a drift-aware experimental weight detector, and audited reassessment coverage in both directions.
+
 ## 0.1.0 candidate
 
 - Defined 32 read projections for TYR application schema v92.

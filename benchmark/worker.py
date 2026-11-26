@@ -21,7 +21,7 @@ from tyr_brain_lab.source import open_source
 import protocol
 from providers import Client, LocalAdapter, MockTransport, Policy, ResponsesAdapter
 
-METHODS = ("deterministic", "mock-openai", "mock-local")
+METHODS = ("deterministic", "drift-aware", "mock-openai", "mock-local")
 
 
 def _refs(evidence, fields):
@@ -56,7 +56,7 @@ def _confounders(result):
     return detected
 
 
-def deterministic(task, source):
+def deterministic(task, source, *, drift_aware=False):
     findings = {}
     for window in task["relationship"]:
         plan = analysis.config("late-caffeine-sleep", "total_sleep_minutes", window["start"], window["end"])
@@ -68,6 +68,16 @@ def deterministic(task, source):
             "confounders": _confounders(result),
         }
     start, end = task["change"]["start"], task["change"]["end"]
+    if drift_aware:
+        from weight_break import from_source
+
+        change = from_source(source, start, end)
+    else:
+        change = exploratory_change(source, start, end)
+    return {"version": protocol.VERSION, "case_id": task["case_id"], "relationship": findings, "change": change}
+
+
+def exploratory_change(source, start, end):
     scan = analysis.scan_baseline(source, "body_weight", start, end)
     change = {"decision": "inconclusive", "effect": None, "references": [], "claim_type": "descriptive", "split": None}
     if scan["candidates"]:
@@ -78,7 +88,7 @@ def deterministic(task, source):
             change.update(decision="change", split=top)
         elif result["evidence_decision"] == "notSupported":
             change["decision"] = "no_change"
-    return {"version": protocol.VERSION, "case_id": task["case_id"], "relationship": findings, "change": change}
+    return change
 
 
 def _mock_response(method, task):
@@ -127,8 +137,8 @@ def execute(packet, method, ledger=None):
     with open_source(database) as source:
         if source.manifest["profile"] != "open_data_projection" or source.owner != 1:
             raise ValueError("Bundled workers admit synthetic benchmark projections only")
-        if method == "deterministic":
-            prediction, provider = deterministic(task, source), None
+        if method in ("deterministic", "drift-aware"):
+            prediction, provider = deterministic(task, source, drift_aware=method == "drift-aware"), None
         elif ledger is not None:
             prediction, provider = _accounted_mock(method, task, source, ledger)
         else:
@@ -181,7 +191,7 @@ def main():
     args = parser.parse_args()
     try:
         if args.confined_inputs:
-            if args.worker != "deterministic" and args.ledger is None:
+            if args.worker.startswith("mock-") and args.ledger is None:
                 raise ValueError("A confined mock worker needs a designated ledger")
             _confine(args.packet, args.ledger)
         print(protocol.canonical(execute(args.packet, args.worker, args.ledger)))

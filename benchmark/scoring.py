@@ -132,6 +132,7 @@ def score_case(database, task, expected, results):
 
         change = predictions["change"]
         change_truth = expected["change"]
+        expected_change = expected.get("weight_decision", "change" if change_truth else "no_change")
         causal = change["claim_type"] == "causal"
         trace = _trace(db, change["references"], task["change"]["start"], task["change"]["end"], split=change["split"])
         effect = change["effect"]
@@ -145,9 +146,9 @@ def score_case(database, task, expected, results):
             direction = effect * nearest["effect_kg"] > 0
         correct = (
             decision == "change" and days_error is not None and days_error <= 14 and direction
-            if change_truth else decision == "no_change"
+            if expected_change == "change" else decision == expected_change
         )
-        change_result = {"expected": "change" if change_truth else "no_change", "submitted": change["decision"],
+        change_result = {"expected": expected_change, "submitted": change["decision"],
                          "effective_decision": decision, "correct": correct, "breakpoint_absolute_error_days": days_error,
                          "unsupported_causal": causal, "direction_match": direction, "evidence": trace}
     earlier, later = (output[key] for key in protocol.WINDOWS[:2])

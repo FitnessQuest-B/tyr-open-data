@@ -64,6 +64,7 @@ class Day:
     weight_kg: float
     serving_factor: float
     omitted: frozenset[str]
+    dose_factor: float = 1.0
 
 
 def numeric(value, lower, upper, field, integral=False):

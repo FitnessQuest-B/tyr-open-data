@@ -81,7 +81,7 @@ def write_nutrition(db, day):
         (FOODS[1], 480, "breakfast", day.serving_factor),
         (FOODS[0], 750, "lunch", round(1.5 * day.serving_factor, 2)),
         (FOODS[0], 1140, "dinner", round(1.85 * day.serving_factor, 2)),
-        (FOODS[2], dose_minute, "snack", 1.0),
+        (FOODS[2], dose_minute, "snack", day.dose_factor),
     )
     totals = {key: 0.0 for key in range(1, 6)}
     for slot, event in enumerate(events, start=1):
