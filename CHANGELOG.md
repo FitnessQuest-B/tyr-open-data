@@ -1,12 +1,12 @@
 # Changelog
 
-## 0.2.0 candidate
+## 0.2.0
 
-- Added a CPU-only arm64 benchmark supervisor with a disposable VM per case, rootless OCI execution and bounded offline outputs.
-- Added a private 48-case method-validation pilot with varied layouts, audited evidence adequacy and case-level diagnostics.
+- Added an experimental offline benchmark for external agents with a CPU-only Linux arm64 supervisor, a disposable VM per case, rootless OCI execution and bounded outputs.
+- Added tooling for a private 48-case synthetic pilot with varied layouts, audited evidence adequacy and case-level diagnostics.
 - Added bounded runner readiness checks, stage-specific failure receipts, a drift-aware experimental weight detector, and audited reassessment coverage in both directions.
 
-## 0.1.0 candidate
+## 0.1.0
 
 - Defined 32 read projections for TYR application schema v92.
 - Added blank SQLite creation and separate Brain Lab schema artifacts.

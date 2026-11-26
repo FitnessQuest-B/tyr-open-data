@@ -1,6 +1,8 @@
 # TYR Open Data
 
-Local development candidate for working with a supported subset of TYR SQLite records. The Open Data specification version is **0.1.0**. The export adapter supports **TYR application schema v92**. The generated records and Brain Lab files have separate SQLite application identifiers and each starts at file schema version 1.
+TYR Open Data provides standalone SQLite tools for working with a supported subset of TYR records. Release **v0.2.0** adds an experimental offline benchmark for external agents using synthetic records. See the [runner setup and public isolation probes](benchmark/isolated/README.md).
+
+The Open Data specification version is **0.1.0**. The export adapter supports **TYR application schema v92**. The generated records and Brain Lab files have separate SQLite application identifiers and each starts at file schema version 1.
 
 ## Create the empty databases
 
