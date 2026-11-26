@@ -1,0 +1,7 @@
+{
+  "sha256": {
+    "tyr-brain-lab-0.1.0.sqlite": "1b1c85dfa218c9cd30a881aabf9ddc7633bcd93628b7c8e2c1a705d6895ac78b",
+    "tyr-open-data-0.1.0.sqlite": "75bc8367f7b67b495161e82f950be8c74ac25c0f773ad2c27e0a4550c9cd25e8"
+  },
+  "sqlite_version": "3.53.3"
+}

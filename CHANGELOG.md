@@ -1,0 +1,13 @@
+# Changelog
+
+## 0.1.0 candidate
+
+- Defined 32 read projections for TYR application schema v92.
+- Added blank SQLite creation and separate Brain Lab schema artifacts.
+- Added standalone compatibility checks for fresh and upgraded v92 exports, with explicit limited coverage for routed health data.
+- Documented all v92 projections, measurement semantics and the nine Brain tables.
+- Added agent instructions and verified read-only SQLite and Python examples.
+- Added four configurable synthetic subjects, deterministic SQLite generation and separate agent and evaluator packages.
+- Added offline Brain Lab analysis, isolated persistence, source fingerprinting, evidence replay and a Markdown review workflow.
+- Added held-out offline benchmark scoring, detached worker packets, and OpenAI Responses and local JSON adapters tested with mock responses.
+- Added effect and evidence requirements to benchmark scoring version 2 and set the supported SQLite floor to 3.41.0.

@@ -1,0 +1,4062 @@
+{
+  "brain-lab": {
+    "brain_assessment": {
+      "columns": {
+        "applicability": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "assessed_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "claim_strength": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "evidence_decision": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "evidence_strength": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "failure_disposition": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "hypothesis_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "latest_evaluation_uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "policy_version": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "review_reason_code": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "validity_context_codec_version": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "validity_context_json": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "hypothesis_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "brain_hypothesis"
+        },
+        {
+          "columns": [
+            "latest_evaluation_uuid"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "uuid"
+          ],
+          "table": "brain_evaluation"
+        }
+      ]
+    },
+    "brain_context_event": {
+      "columns": {
+        "certainty": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "context_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "created_at": {
+          "default": "CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "ended_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "is_deleted": {
+          "default": "0",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "notes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "source_ref": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "source_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "started_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "updated_at": {
+          "default": "CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": []
+    },
+    "brain_evaluation": {
+      "columns": {
+        "algorithm_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "algorithm_version": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "analysis_family_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "coverage_ratio": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "diagnostics_codec_version": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "diagnostics_json": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "effect_estimate": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "effect_unit": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "evaluation_mode": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "evidence_decision": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "executed_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "failure_class": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "hypothesis_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "input_manifest_hash": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "interval_level": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "interval_lower": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "interval_method": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "interval_upper": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "limitations_code": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "primary_metric_key": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "reproducibility_level": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "result_claim_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "sample_count": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "spec_hash": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "spec_registered_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "specification_codec_version": {
+          "default": "1",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "specification_json": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "supersedes_evaluation_uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "test_window_end": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "test_window_start": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "validation_method": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "hypothesis_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "brain_hypothesis"
+        },
+        {
+          "columns": [
+            "supersedes_evaluation_uuid"
+          ],
+          "on_delete": "SET NULL",
+          "on_update": "NO ACTION",
+          "references": [
+            "uuid"
+          ],
+          "table": "brain_evaluation"
+        }
+      ]
+    },
+    "brain_evaluation_evidence": {
+      "columns": {
+        "canonical_unit": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "cohort_role": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "confidence_code": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "coverage_ratio": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "evaluation_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "expected_count": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "extra_codec_version": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "extra_json": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "maximum": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "mean": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "metric_key": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "metric_role": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "minimum": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "sample_count": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "source_fingerprint": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "source_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "source_uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "standard_deviation": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "window_end": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "window_start": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "evaluation_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "brain_evaluation"
+        },
+        {
+          "columns": [
+            "source_uuid"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "uuid"
+          ],
+          "table": "intervention_periods"
+        }
+      ]
+    },
+    "brain_hypothesis": {
+      "columns": {
+        "archived_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "claim_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "created_at": {
+          "default": "CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "definition_version": {
+          "default": "1",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "domain": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "hypothesis_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "origin_ref": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "origin_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "registered_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "registration_mode": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "statement": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "title": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "updated_at": {
+          "default": "CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": []
+    },
+    "brain_hypothesis_intervention": {
+      "columns": {
+        "created_at": {
+          "default": "CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "hypothesis_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "intervention_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "intervention_period_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "relationship_role": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "hypothesis_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "brain_hypothesis"
+        },
+        {
+          "columns": [
+            "intervention_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "interventions"
+        },
+        {
+          "columns": [
+            "intervention_period_id",
+            "intervention_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id",
+            "intervention_id"
+          ],
+          "table": "intervention_periods"
+        }
+      ]
+    },
+    "brain_hypothesis_metric": {
+      "columns": {
+        "condition_spec_json": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "created_at": {
+          "default": "CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "hypothesis_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "lag_days": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "metric_key": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "role": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "window_days": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "hypothesis_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "brain_hypothesis"
+        }
+      ]
+    },
+    "brain_memory_link": {
+      "columns": {
+        "created_at": {
+          "default": "CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "from_node_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "is_active": {
+          "default": "1",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "link_version": {
+          "default": "1",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "relation_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "source_evaluation_uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "to_node_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "from_node_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "brain_memory_node"
+        },
+        {
+          "columns": [
+            "source_evaluation_uuid"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "uuid"
+          ],
+          "table": "brain_evaluation"
+        },
+        {
+          "columns": [
+            "to_node_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "brain_memory_node"
+        }
+      ]
+    },
+    "brain_memory_node": {
+      "columns": {
+        "archived_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "created_at": {
+          "default": "CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "last_validated_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "node_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "retrieval_tier": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "review_state": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "source_entity_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "source_entity_uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "summary": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "summary_version": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "title": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "updated_at": {
+          "default": "CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)",
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": []
+    },
+    "intervention_periods": {
+      "columns": {
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "intervention_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "intervention_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "interventions"
+        }
+      ]
+    },
+    "interventions": {
+      "columns": {
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": []
+    }
+  },
+  "records": {
+    "baseline_metric": {
+      "columns": {
+        "computed_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "computed_date": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "coverage_pct": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "coverage_status": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "excluded_day_count": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "first_observed_date": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "last_observed_date": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "linear_slope": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "max_value": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "mean": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "median": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "meets_minimum_coverage": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "metric_domain": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "metric_key": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "min_value": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "p25": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "p75": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "sample_size": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "standard_deviation": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "unit": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "user_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "window_days": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": []
+    },
+    "body_measurement": {
+      "columns": {
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "measured_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "point_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "user_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "value_cm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "REAL"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "point_id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "body_measurement_point"
+        },
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "user"
+        }
+      ]
+    },
+    "body_measurement_point": {
+      "columns": {
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "key": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "name": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": []
+    },
+    "body_weight": {
+      "columns": {
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "measured_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "source": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "user_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "weight_kg": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "REAL"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "user"
+        }
+      ]
+    },
+    "cardio_activities": {
+      "columns": {
+        "activity_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "capture_mode": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "confidence": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "distance_m": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "duration_sec": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "ended_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "exercise_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "session_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "source": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "started_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "exercise_id"
+          ],
+          "on_delete": "SET NULL",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "exercise_table"
+        },
+        {
+          "columns": [
+            "session_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "workout_sessions"
+        }
+      ]
+    },
+    "cardio_activity_summaries": {
+      "columns": {
+        "avg_cadence_rpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "avg_hr_bpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "avg_incline": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "avg_power_w": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "avg_resistance": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "avg_speed_kmh": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "calculation_version": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "calories_total": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "cardio_activity_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "computed_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "distance_m": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "duration_sec": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "elevation_gain_m": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "hr_coverage_pct": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "machine_coverage_pct": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "max_hr_bpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "max_power_w": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "max_speed_kmh": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "median_hr_bpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "min_hr_bpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "zone1_sec": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "zone2_sec": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "zone3_sec": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "zone4_sec": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "zone5_sec": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "cardio_activity_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "cardio_activities"
+        }
+      ]
+    },
+    "cardio_recovery_tests": {
+      "columns": {
+        "cardio_activity_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "measured_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "recovery120_sec_bpm_drop": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "recovery60_sec_bpm_drop": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "test_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "cardio_activity_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "cardio_activities"
+        }
+      ]
+    },
+    "daily_heart_rate": {
+      "columns": {
+        "avg_bpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "date": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "max_bpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "min_bpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "resting_bpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "sample_count": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "source": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "user_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "user"
+        }
+      ]
+    },
+    "daily_sleep": {
+      "columns": {
+        "awake_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "date": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deep_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "light_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "rem_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "sleep_end": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "sleep_end_minute": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "sleep_midpoint_minute": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "sleep_start": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "sleep_start_minute": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "source": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "stage_quality": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "total_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "user_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "user"
+        }
+      ]
+    },
+    "daily_snapshot": {
+      "columns": {
+        "bedtime_minute": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "body_weight": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "body_weight28_day_avg": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "body_weight7_day_avg": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "body_weight_trend7_vs28": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "caffeine_last_dose_minute": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "caffeine_mg": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "calculation_version": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "caloric_intake": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "carbs_grams": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "cardio_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "computed_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deep_sleep_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deep_sleep_pct": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "eating_window_end_minute": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "eating_window_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "eating_window_start_minute": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "fat_grams": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "heart_rate_data_coverage_pct": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "hrv_baseline_coverage_pct": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "hrv_baseline_sample_size": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "hrv_deviation_pct": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "hrv_metric": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "light_sleep_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "logged_meal_count": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "meal_timing_sd_minutes14_day": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "nutrition_data_coverage_pct": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "protein_grams": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "protein_per_kg_body_weight": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "rem_sleep_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "rem_sleep_pct": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "sleep_data_coverage_pct": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "sleep_midpoint_minute": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "snapshot_date": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "snapshot_version": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "step_data_coverage_pct": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "strength_failure_sets": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "strength_volume_load": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "strength_working_sets": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "total_sleep_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "total_steps": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "user_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "wake_minute": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "workout_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "workout_session_count": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "workout_timing_sd_minutes14_day": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        }
+      },
+      "foreign_keys": []
+    },
+    "daily_steps": {
+      "columns": {
+        "date": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "source": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "total_steps": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "user_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "user"
+        }
+      ]
+    },
+    "exercise_sets": {
+      "columns": {
+        "avg_cadence_rpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "avg_power_w": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "avg_speed_kmh": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "confidence": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "distance_m": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "duration_sec": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "exercise_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "incline": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "load_kg": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "performed_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "reps": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "resistance": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "rpe": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "session_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "set_index": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "set_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "source": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "superset_group": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "working_one_rep_max_kg_at_log": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "exercise_id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "exercise_table"
+        },
+        {
+          "columns": [
+            "session_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "workout_sessions"
+        }
+      ]
+    },
+    "exercise_table": {
+      "columns": {
+        "category": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "equipment_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "name_key": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "per_dumbbell": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "stretch_metric_pref": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "system_created": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": []
+    },
+    "food_nutrients": {
+      "columns": {
+        "amount_per_base_unit": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "coverage_status": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "food_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "nutrient_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 2,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "food_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "foods"
+        },
+        {
+          "columns": [
+            "nutrient_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "nutrients"
+        }
+      ]
+    },
+    "food_portions": {
+      "columns": {
+        "description": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "food_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "gram_weight": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "is_available": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "is_base": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "sort_order": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "food_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "foods"
+        }
+      ]
+    },
+    "food_sources": {
+      "columns": {
+        "code": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": []
+    },
+    "foods": {
+      "columns": {
+        "default_gram_weight": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "is_custom": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "is_deleted": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "name": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "parent_food_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "source_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "parent_food_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "foods"
+        },
+        {
+          "columns": [
+            "source_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "food_sources"
+        }
+      ]
+    },
+    "hourly_heart_rate": {
+      "columns": {
+        "avg_bpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "daily_heart_rate_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "hour": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "max_bpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "min_bpm": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "sample_count": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "daily_heart_rate_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "daily_heart_rate"
+        }
+      ]
+    },
+    "hourly_steps": {
+      "columns": {
+        "daily_steps_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "hour": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "steps": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "daily_steps_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "daily_steps"
+        }
+      ]
+    },
+    "intervention_outcome_metric": {
+      "columns": {
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "expected_direction": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "expected_onset_days": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "intervention_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "is_deleted": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "is_primary": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "metric_key": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "minimum_meaningful_change": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "minimum_meaningful_change_unit": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "washout_days": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "intervention_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "interventions"
+        }
+      ]
+    },
+    "intervention_periods": {
+      "columns": {
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "end_day_key": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "ended_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "intervention_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "is_deleted": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "source_log_entry_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "source_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "start_day_key": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "started_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "user_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "workout_session_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "intervention_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "interventions"
+        },
+        {
+          "columns": [
+            "source_log_entry_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "log_entries"
+        },
+        {
+          "columns": [
+            "workout_session_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "workout_sessions"
+        }
+      ]
+    },
+    "intervention_supplements": {
+      "columns": {
+        "dose_amount": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "dose_unit": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "frequency_per_day": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "intervention_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "supplement_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 2,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "intervention_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "interventions"
+        },
+        {
+          "columns": [
+            "supplement_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "supplements"
+        }
+      ]
+    },
+    "interventions": {
+      "columns": {
+        "category": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "intervention_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "is_custom": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "is_deleted": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "name": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "uuid": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": []
+    },
+    "log_entries": {
+      "columns": {
+        "caffeine_mg": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "calories_kcal": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "carbs_g": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "consumed_grams_basis": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "consumed_grams_snapshot": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "day_key": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "entity_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "entity_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "fat_g": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "fiber_g": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "logged_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "meal_modifier_operation": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "meal_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "nutrient_coverage_snapshot": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "parent_log_entry_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "portion_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "protein_g": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "quantity": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "quantity_kind": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "source_type": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "sugar_g": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "user_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "parent_log_entry_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "log_entries"
+        },
+        {
+          "columns": [
+            "portion_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "food_portions"
+        }
+      ]
+    },
+    "log_entry_nutrients": {
+      "columns": {
+        "amount": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "coverage_status": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "log_entry_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "nutrient_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 2,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "log_entry_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "log_entries"
+        },
+        {
+          "columns": [
+            "nutrient_id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "nutrients"
+        }
+      ]
+    },
+    "morning_hrv": {
+      "columns": {
+        "date": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "measured_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "metric": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "source": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "user_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "value_ms": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "REAL"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "user"
+        }
+      ]
+    },
+    "nutrients": {
+      "columns": {
+        "category": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "code": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "is_custom": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "is_trackable": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "name": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "unit": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        }
+      },
+      "foreign_keys": []
+    },
+    "sleep_segments": {
+      "columns": {
+        "daily_sleep_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "duration_minutes": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "end": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "stage": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "start": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "daily_sleep_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "daily_sleep"
+        }
+      ]
+    },
+    "supplement_nutrients": {
+      "columns": {
+        "amount_per_dose": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "nutrient_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 2,
+          "type": "INTEGER"
+        },
+        "supplement_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "nutrient_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "nutrients"
+        },
+        {
+          "columns": [
+            "supplement_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "supplements"
+        }
+      ]
+    },
+    "supplements": {
+      "columns": {
+        "category_key": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "dose_amount": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "REAL"
+        },
+        "dose_unit": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "form": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "is_custom": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "is_deleted": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "name": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "parent_supplement_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "parent_supplement_id"
+          ],
+          "on_delete": "NO ACTION",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "supplements"
+        }
+      ]
+    },
+    "user": {
+      "columns": {
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": []
+    },
+    "workout_sessions": {
+      "columns": {
+        "confidence": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "deleted_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "ended_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 1,
+          "type": "INTEGER"
+        },
+        "perceived_exertion": {
+          "default": null,
+          "hidden": 0,
+          "not_null": false,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "source": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "TEXT"
+        },
+        "started_at": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        },
+        "user_id": {
+          "default": null,
+          "hidden": 0,
+          "not_null": true,
+          "pk": 0,
+          "type": "INTEGER"
+        }
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "references": [
+            "id"
+          ],
+          "table": "user"
+        }
+      ]
+    }
+  }
+}

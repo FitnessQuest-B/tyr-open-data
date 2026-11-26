@@ -1,0 +1,80 @@
+[
+  {
+    "payload": {
+      "analysisParameters": {
+        "é": "combining",
+        "z": [
+          -9223372036854775808,
+          9223372036854775807,
+          true,
+          false,
+          null
+        ],
+        "É": "unicode",
+        "😀": "astral",
+        "": "bmp"
+      },
+      "hypothesis": {
+        "claimType": "association",
+        "definitionVersion": 1,
+        "domain": "test",
+        "hypothesisType": "association",
+        "originRef": null,
+        "originType": "observation",
+        "registeredAt": 1735689600,
+        "registrationMode": "retrospective",
+        "statement": "Scalar and ordering test     \n \u0000 \u001b",
+        "title": "Quote \" and backslash \\",
+        "uuid": "00000000-0000-4000-8000-000000000001"
+      },
+      "interventionBindings": [],
+      "interventionOutcomes": [],
+      "metricBindings": [
+        {
+          "metricKey": "total_sleep_minutes",
+          "role": "outcome"
+        }
+      ]
+    },
+    "encoded": "{\"payload\":{\"analysisParameters\":{\"é\":\"combining\",\"z\":[-9223372036854775808,9223372036854775807,true,false,null],\"É\":\"unicode\",\"😀\":\"astral\",\"\":\"bmp\"},\"hypothesis\":{\"claimType\":\"association\",\"definitionVersion\":1,\"domain\":\"test\",\"hypothesisType\":\"association\",\"originRef\":null,\"originType\":\"observation\",\"registeredAt\":1735689600,\"registrationMode\":\"retrospective\",\"statement\":\"Scalar and ordering test     \\n \\u0000 \\u001b\",\"title\":\"Quote \\\" and backslash \\\\\",\"uuid\":\"00000000-0000-4000-8000-000000000001\"},\"interventionBindings\":[],\"interventionOutcomes\":[],\"metricBindings\":[{\"metricKey\":\"total_sleep_minutes\",\"role\":\"outcome\"}]},\"version\":1}",
+    "sha256": "833f57fb427d995c153a42a2a1d095c439ddc7ef6c8acaaa68158257316172a1"
+  },
+  {
+    "payload": {
+      "analysisParameters": {
+        "counts": {
+          "first": 0,
+          "second": 5
+        },
+        "thresholdMilli": 15000,
+        "window": [
+          "2025-01-01",
+          "2025-03-01"
+        ]
+      },
+      "hypothesis": {
+        "claimType": "association",
+        "definitionVersion": 1,
+        "domain": "test",
+        "hypothesisType": "association",
+        "originRef": null,
+        "originType": "observation",
+        "registeredAt": 1735689600,
+        "registrationMode": "retrospective",
+        "statement": "Scalar and ordering test     \n \u0000 \u001b",
+        "title": "Quote \" and backslash \\",
+        "uuid": "00000000-0000-4000-8000-000000000001"
+      },
+      "interventionBindings": [],
+      "interventionOutcomes": [],
+      "metricBindings": [
+        {
+          "metricKey": "total_sleep_minutes",
+          "role": "outcome"
+        }
+      ]
+    },
+    "encoded": "{\"payload\":{\"analysisParameters\":{\"counts\":{\"first\":0,\"second\":5},\"thresholdMilli\":15000,\"window\":[\"2025-01-01\",\"2025-03-01\"]},\"hypothesis\":{\"claimType\":\"association\",\"definitionVersion\":1,\"domain\":\"test\",\"hypothesisType\":\"association\",\"originRef\":null,\"originType\":\"observation\",\"registeredAt\":1735689600,\"registrationMode\":\"retrospective\",\"statement\":\"Scalar and ordering test     \\n \\u0000 \\u001b\",\"title\":\"Quote \\\" and backslash \\\\\",\"uuid\":\"00000000-0000-4000-8000-000000000001\"},\"interventionBindings\":[],\"interventionOutcomes\":[],\"metricBindings\":[{\"metricKey\":\"total_sleep_minutes\",\"role\":\"outcome\"}]},\"version\":1}",
+    "sha256": "b1a2049cbd9603e7c3df3c8eebf1755bd9da7f596255119769dd554163183999"
+  }
+]

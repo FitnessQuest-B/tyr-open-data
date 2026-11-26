@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+*.sqlite
+*.sqlite3
+*.db
+*.zip
+*-wal
+*-shm
+*-journal
+!databases/empty/tyr-open-data-0.1.0.sqlite
+!databases/empty/tyr-brain-lab-0.1.0.sqlite
