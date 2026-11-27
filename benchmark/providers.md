@@ -12,6 +12,10 @@ Dry-run mode serializes the request and returns a worst-case mock reservation ag
 
 The private SQLite ledger reserves worst-case tokens and cost before dispatch. Completed responses are keyed by the canonical request fingerprint and returned on resume without dispatching again. An attempt explicitly known to be unsent can retry within the per-request and total-attempt limits. An ambiguous outcome retains its reservation and blocks automatic retries for that request. The ledger records the returned model, reported usage, simulated charge and actual zero API cost separately. Pass a dedicated `--ledger` file to `worker.py` to test a durable resume for one packet. The bundled demo uses temporary ledgers to keep independent passes independent.
 
+## Host-side research integration
+
+The [Phase 4A host broker](research/README.md) builds a separate public-synthetic observation packet, validates Responses outputs and deterministic tools, and tests conservative budget controls with mocked requests. The bundled offline workers keep their existing adapters and ledger.
+
 ## Future paid protocol
 
 A future paid experiment requires owner review of the proposed dataset and disclosure, provider and model identifier, request count, independently verified token budget and current rates, expected cost range, maximum authorized cost, retry policy, and benchmark method. Use synthetic inputs by default. Personal data requires authorization for the particular transfer. A later live integration should use an environment variable or secret manager for credentials, with credentials kept out of repositories and ledgers. Completion of this mock workflow grants no permission to make a paid request.

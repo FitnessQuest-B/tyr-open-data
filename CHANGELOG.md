@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 release candidate
+
+- Added an experimental host-side Responses API adapter with an optional SDK, reviewed public synthetic input scopes, structured predictions, evidence validation, bounded tools and a local request ledger.
+- Added offline mock and replay workflows for deterministic, model-only and tool-assisted experimental arms. The SQLite specifications, offline benchmark and isolated runner retain the v0.3.0 interfaces.
+- Reserved the full published model context plus bounded output before any dispatch. Reduced the prospective live smoke schedule to two requests and made the historical eight-case batch offline-only under its existing caps.
+- Documented preliminary public experiments in which the host-routed sleep arm recovered six exact reassessments. A deterministic replay with equivalent evidence matched its sleep results. The tool-assisted arm missed all 12 intended weight abstentions in that selected pilot.
+- Deferred private Phase 4D validation. The latest public synthetic panel left no measured headroom once the same-evidence deterministic comparator included a weekday check. The comparison leaves open how models prioritize and select worthwhile investigations across domains.
+
 ## 0.3.0
 
 - Added an experimental benchmark worker that checks local weight coverage and uncertainty before calling a step, and checks temporal stability before deciding a relationship window.
