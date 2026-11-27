@@ -1,0 +1,26 @@
+{
+  "profile": "v93.1",
+  "base_contract": "0.1.0",
+  "source_app_schema_version": 93,
+  "projection_columns": {
+    "log_entries": {
+      "logged_utc_offset_minutes": "INTEGER",
+      "logged_temporal_basis": "TEXT",
+      "logged_time_precision": "TEXT"
+    },
+    "workout_sessions": {
+      "start_utc_offset_minutes": "INTEGER",
+      "start_temporal_basis": "TEXT",
+      "start_time_precision": "TEXT",
+      "assigned_civil_date": "TEXT",
+      "assigned_day_basis": "TEXT"
+    }
+  },
+  "brain_metric_additions": {
+    "caffeine_mg": {
+      "unit": "mg",
+      "population": "assigned nutrition day",
+      "meaning": "recorded caffeine; unknown stays null"
+    }
+  }
+}

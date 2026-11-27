@@ -7,6 +7,8 @@ SCHEMA = "schema/versions/0.1.0/"
 APPROVED_FILES = {
     ".gitignore", "README.md", "CHANGELOG.md", "CONTRIBUTING.md", "SECURITY.md",
     "LICENSE", "AGENTS.md", "docs/architecture/compatibility.md", "brain-lab/README.md",
+    "tools/read_native.py", "tools/native_brain_receipts.py", "tests/test_native_compat.py",
+    "docs/architecture/native-v93.md", "schema/native-export-profiles/v93.1.json",
     "databases/synthetic/README.md", "scenarios/README.md", "scenarios/starter.json",
     "tools/generate_synthetic.py", "tools/synthetic_model.py", "tools/synthetic_storage.py",
     "tests/test_synthetic.py",
